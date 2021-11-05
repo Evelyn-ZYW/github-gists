@@ -9,10 +9,9 @@ export default function useInfiniteScroll(pageNumber) {
     setIsFetching(true);
     setError(false);
 
-    requestGists()
-        .catch((err) => {
-            setIsFetching(false);
-            setError(`🧐 Some error just happened. ${err.message}.`);
+    requestGists().catch((err) => {
+      setIsFetching(false);
+      setError(`🧐 Some error just happened. ${err.message}`);
     });
   }, [pageNumber]);
 
@@ -30,5 +29,28 @@ export default function useInfiniteScroll(pageNumber) {
     setIsFetching(false);
   };
 
+  /*
+useEffect(()=>{
+    setIsFetching(true);
+    setError(false);
+    let isActive = true;
+
+    fetch(`https://api.github.com/gists?per_page=30&page=${pageNumber}`)
+        .then((res) => res.json())
+        .then((data)=> {
+            if(isActive){
+                setItems((prevItems) => [...prevItems, ...data]);
+                setIsFetching(false);
+            }
+        })
+        .catch((err)=>{
+            setIsFetching(false);
+            setError(`🧐 Some error just happened. ${err.message}.`);
+        })
+    return () => {
+        isActive = false;
+    }
+},[pageNumber])
+*/
   return { isFetching, error, items };
 }
