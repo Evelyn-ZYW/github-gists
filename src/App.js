@@ -1,12 +1,12 @@
-import React, { useState, useRef, useCallback } from "react";
-import useInfiniteScroll from "./useInfiniteScroll";
-import useObserver from "./useObserver";
+import React, { useState } from "react";
+import useFetch from "./useFetch";
+import useInifiniteScroll from "./useInifiniteScroll";
 import "./styles.scss";
 
 export default function App() {
   const [pageNumber, setPageNumber] = useState(1);
-  const { isFetching, error, items } = useInfiniteScroll(pageNumber);
-  const { lastItemRef } = useObserver(pageNumber, setPageNumber);
+  const { isFetching, error, items } = useFetch(pageNumber);
+  const { lastItemRef } = useInifiniteScroll(pageNumber, setPageNumber);
 
   return (
     <div className="App">
@@ -14,7 +14,7 @@ export default function App() {
         <div
           className="single_line"
           key={item.node_id}
-          ref={items.length === index + 1 ? lastItemRef : null}
+          ref={index === items.length - 1 ? lastItemRef : null}
         >
           <img src={item.owner.avatar_url} alt="" />
           <p>{Object.keys(item.files)[0]}</p>
