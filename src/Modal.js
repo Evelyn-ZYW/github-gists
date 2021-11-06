@@ -21,6 +21,6 @@ export default function Modal({ children }) {
     // clean up prevents memory leaks, otherwise we would be leaking divs every single time that we created a Modal and unrendered a Modal
   }, []);
 
-  // Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+  // Portals provide a way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
   return createPortal(<div>{children}</div>, eleRef.current);
 }

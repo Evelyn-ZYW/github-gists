@@ -14,7 +14,7 @@ export default function App() {
   const toggleModal = (index) => {
     setShowModal(true);
     setOnItem(items[index]);
-    console.log("modal poped up. item: ", index + 1);
+
     setTimeout(() => {
       setShowModal(false);
     }, 1000);
@@ -40,7 +40,6 @@ export default function App() {
           <img
             src={onItem.owner.avatar_url}
             alt=""
-            className={showModal ? "fade-out" : null}
           />
         </Modal>
       ) : null}
